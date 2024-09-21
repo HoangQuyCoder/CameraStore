@@ -121,8 +121,8 @@ class checkBill
         $order_id = (int)$order_id;
         $query = "DELETE FROM orders WHERE order_id = '$order_id'";
         $query2 = "DELETE FROM order_detail WHERE order_id = '$order_id'";
-
-        if (($this->db->delete($query) && $this->db->delete($query2))  === TRUE) {
+        $this->db->delete($query2);
+        if (($this->db->delete($query))  === TRUE) {
             return ['success' => true];
         } else {
             return ['errors' => "Error: " . $this->db->error];
